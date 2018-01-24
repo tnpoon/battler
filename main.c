@@ -9,15 +9,11 @@
 
 int HP = 100;
 int defeated = 0;
-bool isDead = false;
 
-void balrog(){
-//	printf("You die!\n");
-	HP -= 20;
-	defeated++;
-}
 int main()
 {
+	bool isDead = false;
+
 	puts("Welcome to Battler! Who do you want fight today?");
 	
 	do {

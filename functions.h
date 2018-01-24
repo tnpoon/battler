@@ -3,5 +3,8 @@
 
 int chooser(int n, int m, char choices [][m]);
 
+void balrog();
 
+extern int HP;
+extern int defeated;
 #endif

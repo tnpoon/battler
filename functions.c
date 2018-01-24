@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "functions.h"
 
 int chooser(int n, int m, char choices [][m])
 {
@@ -25,4 +26,9 @@ int chooser(int n, int m, char choices [][m])
 }
 
 
+void balrog(){
+//	printf("You die!\n");
+	HP -= 20;
+	defeated++;
+}
 
