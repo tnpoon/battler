@@ -19,6 +19,8 @@ In the project directory, simply run
 ./Battler.out
 ```
 then enjoy the 'game'!
+## Project Status
+VERY incomplete, only things implemented is the listing system for menus.
 ## Authors
 Battler is coded by tnpoon.
 ## License
