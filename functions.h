@@ -3,16 +3,16 @@
 
 int chooser(int n, int m, char choices [][m]);
 
-void balrog();
+void balrog(void);
 
 int battle(char mobName[], int mobHP, int mobAtk, int defFreq);
 
-void monstermenu();
+void monstermenu (void);
 
-void save();
+void save(void);
 
-void load();
-void clear();
+void load(void);
+void clear(void);
 extern int HP;
 extern int defeated;
 #endif

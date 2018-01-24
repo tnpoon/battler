@@ -41,7 +41,7 @@ int chooser(int n, int m, char choices [][m])
 	}
 }
 
-void balrog(){
+void balrog(void){
 //	printf("You die!\n");
 	int mobHP = 30;
 	int mobAtk = 10;
@@ -101,7 +101,7 @@ int battle(char mobName[], int mobHP, int mobAtk, int defFreq)
 	}
 }
 
-void monstermenu()
+void monstermenu(void)
 {
 	int action;
 	char choices[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Back"}};
@@ -123,7 +123,7 @@ void monstermenu()
 	
 }
 
-void clear()
+void clear(void)
 {
 	char str [5] = {27, '[', '2', 'J', 0};
 	for (int i=0; i < 80; i++){
@@ -132,12 +132,12 @@ void clear()
 	puts(str);
 }
 
-void save()
+void save(void)
 {
 	puts("Sorry! Not implemented yet!");
 }
 
-void load()
+void load(void)
 {
 	puts("Sorry! Not implemented yet!");
 }
