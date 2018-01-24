@@ -18,12 +18,13 @@ int main()
 	
 	do {
 		printf("Your HP: %i Monsters defeated: %i\n", HP, defeated);
-		char test[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Exit"}};
+	//	char test[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Exit"}};	
+		char test[4][50] = {{"Fight Monsters"}, {"Save"}, {"Load"}, {"Exit"}};
 		int choice = chooser(4, 50, test);
 	
 		switch (choice){
 			case 1:
-				balrog();
+				monstermenu();
 				break;
 			case 2: 
 				break;

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "functions.h"
 
 int chooser(int n, int m, char choices [][m])
@@ -25,10 +26,50 @@ int chooser(int n, int m, char choices [][m])
 	}
 }
 
-
 void balrog(){
 //	printf("You die!\n");
+	int mobHP = 30;
+	int mobAtk = 10;
+	int defFreq = 2;
+	char mobName[] = "Balrog";
+	
+	battle(mobName, mobHP, mobAtk, defFreq);
 	HP -= 20;
 	defeated++;
+}
+
+void battle(char mobName[], int mobHP, int mobAtk, int defFreq)
+{
+	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
+	bool inspected = false;
+	bool mobIsAlive = true;
+	int action;
+	
+//	do {
+	printf("You are fighting with %s! What do you do?\n", mobName);
+	chooser(4, 50, choices); 
+}
+
+void monstermenu()
+{
+	int action;
+	char choices[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Back"}};
+	action = chooser(4, 50, choices);
+
+	switch (action){
+		case 1:
+			balrog();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:
+			puts("ERROR! Choose something valid!");
+			break;
+	}
+
 }
 
