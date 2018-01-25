@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "functions.h"
+#include "structures.h"
 
 int chooser(int n, int m, char choices [][m])
 {
@@ -42,24 +43,25 @@ int chooser(int n, int m, char choices [][m])
 }
 
 void balrog(void){
-//	printf("You die!\n");
-	int mobHP = 30;
-	int mobAtk = 10;
-	int defFreq = 2;
-	char mobName[] = "Balrog";
-	int bStatus = 0;
+	Monster monster = {
+	.hp = 30,
+	.atk = 10,
+	.freq = 2,
+	.name = "Balrog",
+	.desc = "",
+	.def = 5};
 
-	bStatus = battle(mobName, mobHP, mobAtk, defFreq);
+	int bStatus = battle(monster);
 	
 	if (bStatus == 0)
 	{
-		printf("You have defeated %s!\n", mobName);
+		printf("You have defeated %s!\n", monster.name);
 		defeated++;
 	}
 	puts("");
 }
 
-int battle(char mobName[], int mobHP, int mobAtk, int defFreq)
+int battle(Monster monster)
 {
 	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
 	bool inspected = false;
@@ -67,20 +69,20 @@ int battle(char mobName[], int mobHP, int mobAtk, int defFreq)
 	int action;
 	
 	do {
-		printf("You are fighting with %s! What do you do?\n", mobName);
+		printf("You are fighting with %s! What do you do?\n", monster.name);
 		printf("Your HP: %d\n", HP);
 		action = chooser(4, 50, choices);
 		
 		switch (action){
 			case 1:
-				printf("You attack %s! Dealing 10 damage!\n", mobName);
-				mobHP -= 10;
+				printf("You attack %s! Dealing 10 damage!\n", monster.name);
+				monster.hp -= 10;
 				break;
 			case 2:
 				break;
 			case 3:
-				printf("You inspect %s, revealing its status!\n", mobName);
-				printf("HP: %i Attack: %i Defence %i\n", mobHP, mobAtk, defFreq);
+				printf("You inspect %s, revealing its status!\n", monster.name);
+				printf("HP: %i Attack: %i Defence %i\n", monster.hp, monster.atk, monster.def);
 				break;
 			case 4:
 				return -1;
@@ -89,9 +91,9 @@ int battle(char mobName[], int mobHP, int mobAtk, int defFreq)
 				break;
 		}
 		puts("");
-	} while ( mobHP > 0 & HP > 0);
+	} while ( monster.hp > 0 & HP > 0);
 	
-	if (mobHP <= 0)
+	if (monster.hp <= 0)
 	{
 		return 0;
 	}

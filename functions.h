@@ -1,11 +1,12 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
+#include "structures.h"
 
 int chooser(int n, int m, char choices [][m]);
 
 void balrog(void);
 
-int battle(char mobName[], int mobHP, int mobAtk, int defFreq);
+int battle(Monster monster);
 
 void monstermenu (void);
 
