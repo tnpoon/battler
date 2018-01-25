@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 #include "functions.h"
 #include "structures.h"
 
@@ -42,7 +43,8 @@ int chooser(int n, int m, char choices [][m])
 	}
 }
 
-void balrog(void){
+void balrog(void)
+{
 	Monster monster = {
 	.hp = 30,
 	.atk = 10,
@@ -53,30 +55,38 @@ void balrog(void){
 
 	int bStatus = battle(monster);
 	
-	if (bStatus == 0)
-	{
+	if (bStatus == 1){
 		printf("You have defeated %s!\n", monster.name);
 		defeated++;
 	}
+
 	puts("");
 }
 
 int battle(Monster monster)
 {
 	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
-	bool inspected = false;
-	bool mobIsAlive = true;
-	int action;
-	
+	bool pDefend = false;
+	int defCounter = 0;
+	int damage;
+
 	do {
 		printf("You are fighting with %s! What do you do?\n", monster.name);
 		printf("Your HP: %d\n", HP);
 		action = chooser(4, 50, choices);
 		
+		if (defCounter < monster.freq) {
+			damage = 10 - monster.def;
+			defCounter++;
+		else {
+			damage = floor((10 - monster.def) / 2);
+			defCounter = 0;
+		}
+
 		switch (action){
 			case 1:
-				printf("You attack %s! Dealing 10 damage!\n", monster.name);
-				monster.hp -= 10;
+				printf("You attack %s! Dealing %d damage!\n", monster.name, damage);
+				monster.hp -= damage;
 				break;
 			case 2:
 				break;
@@ -95,11 +105,11 @@ int battle(Monster monster)
 	
 	if (monster.hp <= 0)
 	{
-		return 0;
+		return 1;
 	}
 	else
 	{
-		return 1;
+		return 0;
 	}
 }
 
