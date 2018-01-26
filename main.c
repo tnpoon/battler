@@ -34,10 +34,10 @@ int main()
 				monstermenu();
 				break;
 			case 2: // Save
-				save();
+				savemenu();
 				break;
 			case 3: // Load
-				load();
+				loadmenu();
 				break;
 			case 4: // Exit
 				goto QUITGAME;

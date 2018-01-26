@@ -2,13 +2,13 @@
 #define COMMON_H
 #include "structures.h"
 
-int chooser(int n, int m, char choices[][m]);
+int chooser(int n, int m, char choices [][m]);
 
 void balrog(void);
 
 int battle(Monster monster);
 
-void monstermenu(void);
+void monstermenu (void);
 
 void savemenu(void);
 

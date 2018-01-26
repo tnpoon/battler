@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "functions.h"
+#include "common.h"
 
 void monstermenu(void)
 {
@@ -24,12 +24,12 @@ void monstermenu(void)
 	
 }
 
-void save(void)
+void savemenu(void)
 {
 	puts("Sorry! Not implemented yet!");
 }
 
-void load(void)
+void loadmenu(void)
 {
 	puts("Sorry! Not implemented yet!");
 }
