@@ -3,8 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-#include "functions.h"
-#include "structures.h"
+#include "common.h"
 
 int chooser(int n, int m, char choices [][m])
 {
@@ -43,25 +42,7 @@ int chooser(int n, int m, char choices [][m])
 	}
 }
 
-void balrog(void)
-{
-	Monster monster = {
-	.hp = 30,
-	.atk = 10,
-	.freq = 2,
-	.name = "Balrog",
-	.desc = "",
-	.def = 5};
 
-	int bStatus = battle(monster);
-	
-	if (bStatus == 1){
-		printf("You have defeated %s!\n", monster.name);
-		defeated++;
-	}
-
-	puts("");
-}
 
 int battle(Monster monster)
 {
@@ -135,28 +116,6 @@ int battle(Monster monster)
 	}
 }
 
-void monstermenu(void)
-{
-	int action;
-	char choices[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Back"}};
-	action = chooser(4, 50, choices);
-
-	switch (action){
-		case 1:
-			balrog();
-			break;
-		case 2:
-			break;
-		case 3:
-			HP = 0;
-			break;
-		case 4:
-			break;
-		default:
-			break;
-	}
-	
-}
 
 void clear(void)
 {
@@ -167,12 +126,3 @@ void clear(void)
 	puts(str);
 }
 
-void save(void)
-{
-	puts("Sorry! Not implemented yet!");
-}
-
-void load(void)
-{
-	puts("Sorry! Not implemented yet!");
-}

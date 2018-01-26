@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
-#include "functions.h"
+#include "common.h"
 
 //Define global variables
 int HP = 100;
