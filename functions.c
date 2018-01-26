@@ -67,28 +67,24 @@ int battle(Monster monster)
 {
 	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
 	bool pDefend = false;
-	int defCounter = 0;
-	int damage;
+	int defCounter = 1;
+	int damage = 10 - monster.def;
+	int action;
 
 	do {
 		printf("You are fighting with %s! What do you do?\n", monster.name);
-		printf("Your HP: %d\n", HP);
-		action = chooser(4, 50, choices);
+		printf("Your HP: %d\n", HP);	
 		
-		if (defCounter < monster.freq) {
-			damage = 10 - monster.def;
-			defCounter++;
-		else {
-			damage = floor((10 - monster.def) / 2);
-			defCounter = 0;
-		}
-
+		//Player Action	
+		action = chooser(4, 50, choices);
 		switch (action){
-			case 1:
+			case 1: //
 				printf("You attack %s! Dealing %d damage!\n", monster.name, damage);
 				monster.hp -= damage;
 				break;
 			case 2:
+				printf("You defend yourself against %s!", monster.name);
+				pDefend = true;
 				break;
 			case 3:
 				printf("You inspect %s, revealing its status!\n", monster.name);
@@ -100,6 +96,28 @@ int battle(Monster monster)
 			default:
 				break;
 		}
+
+		//Monster Action
+		if (!pDefend) {
+			printf("%s hits you with %d damage!\n", monster.name, monster.atk);
+			HP -= monster.atk;
+		} else if (pDefend) {
+			printf("%s hits you, but because you defended, it deals only %d damage!\n",
+			monster.name, monster.atk /2);
+			HP -= monster.atk / 2;
+			pDefend = false;
+		}
+
+		if (defCounter < monster.freq) {
+			damage = 10 - monster.def;
+			defCounter++;	
+		} else {
+			damage = floor((10 - monster.def) / 2);
+			defCounter = 0;
+			printf("%s redies it self to take your attack!\n", monster.name);
+		}
+
+
 		puts("");
 	} while ( monster.hp > 0 & HP > 0);
 	
