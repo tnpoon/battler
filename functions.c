@@ -67,14 +67,23 @@ int battle(Monster monster)
 {
 	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
 	bool pDefend = false;
-	int defCounter = 1;
-	int damage = 10 - monster.def;
+	int defCounter = 0;
+	int damage;
 	int action;
 
 	do {
 		printf("You are fighting with %s! What do you do?\n", monster.name);
 		printf("Your HP: %d\n", HP);	
-		
+	
+		//Set defence status
+		if (defCounter < monster.freq) {
+			damage = 10 - monster.def;
+			defCounter++;	
+		} else {
+			damage = floor((10 - monster.def) / 2);
+			defCounter = 0;
+		}
+
 		//Player Action	
 		action = chooser(4, 50, choices);
 		switch (action){
@@ -83,7 +92,7 @@ int battle(Monster monster)
 				monster.hp -= damage;
 				break;
 			case 2:
-				printf("You defend yourself against %s!", monster.name);
+				printf("You defend yourself against %s!\n", monster.name);
 				pDefend = true;
 				break;
 			case 3:
@@ -98,29 +107,24 @@ int battle(Monster monster)
 		}
 
 		//Monster Action
-		if (!pDefend) {
-			printf("%s hits you with %d damage!\n", monster.name, monster.atk);
-			HP -= monster.atk;
-		} else if (pDefend) {
-			printf("%s hits you, but because you defended, it deals only %d damage!\n",
-			monster.name, monster.atk /2);
-			HP -= monster.atk / 2;
-			pDefend = false;
+		if (defCounter != 0) {
+			if (!pDefend) {
+				printf("%s hits you with %d damage!\n", monster.name, monster.atk);
+				HP -= monster.atk;
+			} else if (pDefend) {
+				printf("%s hits you, but because you defended, it deals only %d damage!\n",
+				monster.name, monster.atk /2);
+				HP -= monster.atk / 2;
+				pDefend = false;
+			}
+		} else {	
+			printf("%s defends itself! Halving your damage!\n", monster.name);
 		}
-
-		if (defCounter < monster.freq) {
-			damage = 10 - monster.def;
-			defCounter++;	
-		} else {
-			damage = floor((10 - monster.def) / 2);
-			defCounter = 0;
-			printf("%s redies it self to take your attack!\n", monster.name);
-		}
-
 
 		puts("");
 	} while ( monster.hp > 0 & HP > 0);
 	
+	// Return 1 if monster is dead, return 0 if it survives (aka. you run)
 	if (monster.hp <= 0)
 	{
 		return 1;
