@@ -7,47 +7,45 @@
 #include <stdlib.h>
 #include "functions.h"
 
+//Define global variables
 int HP = 100;
 int defeated = 0;
 
 int main()
 {
-	bool isDead = false;
+	//Define variables
 	char welcomeMsg[] = 
 "========================================\n\
 	Welcome to Battler!\n\
 	  Coded By: tnpoon\n\
       To play: Choose an option!\n\
 ========================================";
-	clear();
-	puts(welcomeMsg);
+
+	clear(); // Clear screen
+	puts(welcomeMsg); //Write welcome message
 	
 	do {
-		printf("Your HP: %i Monsters defeated: %i\n", HP, defeated);
-	//	char test[4][50] = {{"Fight Balrog"},{"Fight Trump"},{"FIGHT ME"}, {"Exit"}};	
-		char test[4][50] = {{"Fight Monsters"}, {"Save"}, {"Load"}, {"Exit"}};
-		int choice = chooser(4, 50, test);
+		printf("Your HP: %i Monsters defeated: %i\n", HP, defeated); // Writes player status
+		char test[4][50] = {{"Fight Monsters"}, {"Save"}, {"Load"}, {"Exit"}}; // Declares menu items
+		int choice = chooser(4, 50, test); // Calls menu function, passes items
+
 		switch (choice){
-			case 1:
+			case 1: // Fight monsters
 				monstermenu();
 				break;
-			case 2:
+			case 2: // Save
 				save();
 				break;
-			case 3:
+			case 3: // Load
 				load();
 				break;
-			case 4: 
+			case 4: // Exit
 				goto QUITGAME;
 			default:
 				break;
 		}
 
-		if (HP <= 0)
-		{
-			isDead = true;
-		}
-	} while (!isDead);
+	} while (HP > 0);
 	
 	printf("Game Over!\n");
 

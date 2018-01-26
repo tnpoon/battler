@@ -144,6 +144,7 @@ void monstermenu(void)
 		case 2:
 			break;
 		case 3:
+			HP = 0;
 			break;
 		case 4:
 			break;
