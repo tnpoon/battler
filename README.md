@@ -3,7 +3,7 @@ This is a simple project consisting of a text-based battle game.
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites
-You will need a system with GCC installed, along with CMake.
+You will need a system with GCC 5.4.0+ installed, along with CMake 3.5.1+.
 ### To build
 First run CMake to generate makefile
 ```
