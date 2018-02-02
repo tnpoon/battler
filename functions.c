@@ -46,7 +46,7 @@ int chooser(int n, int m, char choices [][m])
 
 int battle(Monster monster)
 {
-	char choices[4][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Run"}};
+	char choices[5][50] = {{"Attack"}, {"Defend"}, {"Inspect"}, {"Use Potion"}, {"Run"}};
 	bool pDefend = false;
 	int defCounter = 0;
 	int damage;
@@ -54,7 +54,7 @@ int battle(Monster monster)
 
 	do {
 		printf("You are fighting with %s! What do you do?\n", monster.name);
-		printf("Your HP: %d\n", HP);	
+		printf("Your HP: %d Potions: %d\n", HP, items[0]);	
 	
 		//Set defence status
 		if (defCounter < monster.freq) {
@@ -66,7 +66,7 @@ int battle(Monster monster)
 		}
 
 		//Player Action	
-		action = chooser(4, 50, choices);
+		action = chooser(5, 50, choices);
 		switch (action){
 			case 1: //
 				printf("You attack %s! Dealing %d damage!\n", monster.name, damage);
@@ -81,6 +81,15 @@ int battle(Monster monster)
 				printf("HP: %i Attack: %i Defence %i\n", monster.hp, monster.atk, monster.def);
 				break;
 			case 4:
+				if (items[0] > 0) {
+					HP += 10;
+					items[0]--;
+					puts("You drink a potion, healing yourself for 10 HP!");
+				} else {
+					puts("You don't have any potions!");
+				}
+				break;
+			case 5:
 				return -1;
 				break;
 			default:
@@ -126,3 +135,13 @@ void clear(void)
 	puts(str);
 }
 
+int buy(int price, int item)
+{
+	if (price > money){
+		return -1;
+	} else {
+		money -= price;
+		items[item]++;
+		return 0;
+	}
+}

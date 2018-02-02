@@ -10,6 +10,8 @@
 //Define global variables
 int HP = 100;
 int defeated = 0;
+int money = 100;
+int items[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int main()
 {
@@ -25,21 +27,24 @@ int main()
 	puts(welcomeMsg); //Write welcome message
 	
 	do {
-		printf("Your HP: %i Monsters defeated: %i\n", HP, defeated); // Writes player status
-		char test[4][50] = {{"Fight Monsters"}, {"Save"}, {"Load"}, {"Exit"}}; // Declares menu items
-		int choice = chooser(4, 50, test); // Calls menu function, passes items
+		printf("Your HP: %i Monsters defeated: %i\nDungeonBucks: %d Potions: %d\n", HP, defeated, money, items[0]); // Writes player status
+		char test[5][50] = {{"Fight Monsters"}, {"Shop"}, {"Save"}, {"Load"}, {"Exit"}}; // Declares menu items
+		int choice = chooser(5, 50, test); // Calls menu function, passes items
 
 		switch (choice){
 			case 1: // Fight monsters
 				monstermenu();
 				break;
-			case 2: // Save
+			case 2: // Shop
+				shopmenu();
+				break;
+			case 3: // Save
 				savemenu();
 				break;
-			case 3: // Load
+			case 4: // Load
 				loadmenu();
 				break;
-			case 4: // Exit
+			case 5: // Exit
 				goto QUITGAME;
 			default:
 				break;

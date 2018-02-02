@@ -24,6 +24,32 @@ void monstermenu(void)
 	
 }
 
+void shopmenu(void)
+{
+	int action;
+	int temp;
+	char choices[2][50] = { {"Buy potion ($5)"}, {"Exit"} };
+
+	printf("You have %d DungeonBucks.\n", money);
+
+	action = chooser(2, 50, choices);
+
+	switch (action) {
+		case 1:
+			temp = buy(5,0);
+			if (temp == 0 ) {
+				puts("You bought a potion for 5 DungeonBucks!\n");
+			} else {
+				puts("You don't have enough money to buy potion!\n");
+			}
+			break;
+		case 2:
+			break;
+		default:
+			break;
+	}
+}
+
 void savemenu(void)
 {
 	puts("Sorry! Not implemented yet!");
